@@ -5,18 +5,18 @@
 using namespace std;
 
 // Constructor
-Comment::Comment(string t, int authorID, string authorName, int id, int v)
+Comment::Comment(string t, int authID, string authName, int id, int v)
     : Content(id == 0 ? IDGenerator<Comment>::next() : id, v) {
     text = t;
-    authorId = authorID;
-    authorName = authorName;
+    authorId = authID;
+    authorName = authName;
 }
 
 // Display
 void Comment::display() {
     cout << "   Comment [" << id << "] by "
          << authorName << ": " << text
-         << " (Votes: " << votes << ")\n";
+         << endl;
 }
 
 // Getters
