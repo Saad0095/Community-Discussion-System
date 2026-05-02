@@ -31,32 +31,32 @@ int main()
 
             if (choice == 1)
             {
-                string u, p;
+                string userName, password;
                 cout << "Username: ";
-                cin >> u;
+                cin >> userName;
                 cout << "Password: ";
-                cin >> p;
+                cin >> password;
 
                 for (auto x : users)
-                    if (x->getUsername() == u)
+                    if (x->getUsername() == userName)
                         throw runtime_error("Username exists!");
 
-                users.push_back(new User(u, p));
+                users.push_back(new User(userName, password));
                 cout << "Registered!\n";
             }
 
             else if (choice == 2)
             {
-                string u, p;
+                string userName, password;
                 cout << "Username: ";
-                cin >> u;
+                cin >> userName;
                 cout << "Password: ";
-                cin >> p;
+                cin >> password;
 
                 bool found = false;
                 for (auto x : users)
                 {
-                    if (x->login(u, p))
+                    if (x->login(userName, password))
                     {
                         currentUser = x;
                         found = true;
@@ -73,10 +73,10 @@ int main()
 
             else if (choice == 3)
             {
-                string n;
+                string communityName;
                 cout << "Community name: ";
-                cin >> n;
-                comms.push_back(new Community(n));
+                cin >> communityName;
+                comms.push_back(new Community(communityName));
             }
 
             else if (choice == 4)
@@ -87,16 +87,16 @@ int main()
 
             else if (choice == 5)
             {
-                int ci;
+                int communityIndex;
                 cout << "Community index: ";
-                cin >> ci;
+                cin >> communityIndex;
                 cin.ignore();
 
-                string t;
+                string communityTitle;
                 cout << "Post text: ";
-                getline(cin, t);
+                getline(cin, communityTitle);
 
-                comms.at(ci)->addPost(currentUser->createPost(t));
+                comms.at(communityIndex)->addPost(currentUser->createPost(communityTitle));
             }
 
             else if (choice == 6)
@@ -107,59 +107,59 @@ int main()
 
             else if (choice == 7)
             {
-                int ci, pi;
+                int communityIndex, postIndex;
                 cout << "Community index & Post index: ";
-                cin >> ci >> pi;
+                cin >> communityIndex >> postIndex;
                 cin.ignore();
 
                 string t;
                 cout << "Comment: ";
                 getline(cin, t);
 
-                comms.at(ci)
+                comms.at(communityIndex)
                     ->getPosts()
-                    .at(pi)
+                    .at(postIndex)
                     ->addComment(
                         new Comment(t, currentUser->getId(), currentUser->getUsername()));
             }
 
             else if (choice == 8)
             {
-                int ci, pid;
+                int communityIndex, postID;
                 cout << "Community index & Post ID: ";
-                cin >> ci >> pid;
+                cin >> communityIndex >> postID;
 
-                comms.at(ci)->deletePost(pid, currentUser->getId());
+                comms.at(communityIndex)->deletePost(postID, currentUser->getId());
             }
 
             else if (choice == 9)
             {
-                int ci, pi, cid;
+                int communityIndex, postIndex, commentID;
                 cout << "Community index, Post index, Comment ID: ";
-                cin >> ci >> pi >> cid;
+                cin >> communityIndex >> postIndex >> commentID;
 
-                comms.at(ci)->getPosts().at(pi)->deleteComment(cid, currentUser->getId());
+                comms.at(communityIndex)->getPosts().at(postIndex)->deleteComment(commentID, currentUser->getId());
             }
 
             else if (choice == 10)
             {
-                int ci, pi;
+                int communityIndex, postIndex;
                 cout << endl
                      << "Enter Community Index";
-                cin >> ci;
+                cin >> communityIndex;
                 cout << endl
                      << "Enter Post Index";
-                cin >> pi;
+                cin >> postIndex;
 
-                comms.at(ci)->getPosts().at(pi)->upvote(currentUser);
+                comms.at(communityIndex)->getPosts().at(postIndex)->upvote(currentUser);
             }
 
             else if (choice == 11)
             {
-                int ci, pi;
-                cin >> ci >> pi;
+                int communityIndex, postIndex;
+                cin >> communityIndex >> postIndex;
 
-                comms.at(ci)->getPosts().at(pi)->downvote(currentUser);
+                comms.at(communityIndex)->getPosts().at(postIndex)->downvote(currentUser);
             }
 
             else if (choice == 12)

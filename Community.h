@@ -15,7 +15,7 @@ public:
     string getName() const;
 
     void addPost(Post* p);
-    void deletePost(int pid, int userId);
+    void deletePost(int postID, int userID);
 
     void displayPosts();
     vector<Post*>& getPosts();

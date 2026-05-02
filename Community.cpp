@@ -12,12 +12,12 @@ void Community::addPost(Post* p) {
     posts.push_back(p);
 }
 
-void Community::deletePost(int pid, int userId) {
+void Community::deletePost(int postID, int userID) {
     for (auto it = posts.begin(); it != posts.end(); ++it) {
-        if ((*it)->getId() == pid) {
+        if ((*it)->getId() == postID) {
 
             if ((*it)->getAuthor() == nullptr ||
-                (*it)->getAuthor()->getId() != userId) {
+                (*it)->getAuthor()->getId() != userID) {
                 throw runtime_error("You can only delete your own post!");
             }
 

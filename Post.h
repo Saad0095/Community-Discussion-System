@@ -19,7 +19,7 @@ public:
     Post(string t="", User* u=nullptr, int id=0, int v=0);
 
     void addComment(Comment* c);
-    void deleteComment(int cid, int userId);
+    void deleteComment(int commentID, int userID);
 
     void display() override;
 

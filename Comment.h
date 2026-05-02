@@ -12,7 +12,7 @@ class Comment : public Content {
     string authorName;
 
 public:
-    Comment(string t = "", int aid = 0, string aname = "", int id = 0, int v = 0);
+    Comment(string t = "", int authorID = 0, string authorName = "", int id = 0, int v = 0);
 
     void display() override;
 

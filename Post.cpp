@@ -11,11 +11,11 @@ void Post::addComment(Comment* c) {
     comments.push_back(c);
 }
 
-void Post::deleteComment(int cid, int userId) {
+void Post::deleteComment(int commentID, int userID) {
     for (auto it = comments.begin(); it != comments.end(); ++it) {
-        if ((*it)->getId() == cid) {
+        if ((*it)->getId() == commentID) {
 
-            if ((*it)->getAuthorId() != userId) {
+            if ((*it)->getAuthorId() != userID) {
                 throw runtime_error("You can only delete your own comment!");
             }
 
@@ -43,33 +43,33 @@ Post::~Post() {
 }
 
 void Post::upvote(User* user) {
-    int uid = user->getId();
+    int userID = user->getId();
 
-    if (upvotedUsers.count(uid)) {
+    if (upvotedUsers.count(userID)) {
         throw runtime_error("You already upvoted this post!");
     }
 
-    if (downvotedUsers.count(uid)) {
-        downvotedUsers.erase(uid);
+    if (downvotedUsers.count(userID)) {
+        downvotedUsers.erase(userID);
         votes++; // cancel previous downvote
     }
 
-    upvotedUsers.insert(uid);
+    upvotedUsers.insert(userID);
     votes++;
 }
 
 void Post::downvote(User* user) {
-    int uid = user->getId();
+    int userID = user->getId();
 
-    if (downvotedUsers.count(uid)) {
+    if (downvotedUsers.count(userID)) {
         throw runtime_error("You already downvoted this post!");
     }
 
-    if (upvotedUsers.count(uid)) {
-        upvotedUsers.erase(uid);
+    if (upvotedUsers.count(userID)) {
+        upvotedUsers.erase(userID);
         votes--; // cancel previous upvote
     }
 
-    downvotedUsers.insert(uid);
+    downvotedUsers.insert(userID);
     votes--;
 }

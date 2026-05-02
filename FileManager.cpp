@@ -99,10 +99,10 @@ void loadData(SystemManager* sys) {
         // ================= POSTS =================
         for (int j = 0; j < postCount; j++) {
 
-            int pid, authorId, votes;
+            int postID, authorId, votes;
             string text;
 
-            file >> pid >> authorId >> votes;
+            file >> postID >> authorId >> votes;
             file.ignore();
             getline(file, text);
 
@@ -112,7 +112,7 @@ void loadData(SystemManager* sys) {
                 if (u->getId() == authorId)
                     author = u;
 
-            Post* post = new Post(text, author, pid, votes);
+            Post* post = new Post(text, author, postID, votes);
 
             // ================= COMMENTS =================
             int commentCount;
@@ -121,17 +121,17 @@ void loadData(SystemManager* sys) {
 
             for (int k = 0; k < commentCount; k++) {
 
-                int cid, aid;
-                string aname, ctext;
+                int commentID, authorID;
+                string authorName, commentText;
 
-                file >> cid >> aid;
+                file >> commentID >> authorID;
                 file.ignore();
 
-                getline(file, aname);
-                getline(file, ctext);
+                getline(file, authorName);
+                getline(file, commentText);
 
                 post->addComment(
-                    new Comment(ctext, aid, aname, cid)
+                    new Comment(commentText, authorID, authorName, commentID)
                 );
             }
 
@@ -140,9 +140,9 @@ void loadData(SystemManager* sys) {
             file >> upCount;
 
             for (int k = 0; k < upCount; k++) {
-                int uid;
-                file >> uid;
-                post->addUpvotedUser(uid);
+                int userID;
+                file >> userID;
+                post->addUpvotedUser(userID);
             }
 
             // ================= DOWNVOTES =================
@@ -150,9 +150,9 @@ void loadData(SystemManager* sys) {
             file >> downCount;
 
             for (int k = 0; k < downCount; k++) {
-                int uid;
-                file >> uid;
-                post->addDownvotedUser(uid);
+                int userID;
+                file >> userID;
+                post->addDownvotedUser(userID);
             }
 
             file.ignore();
