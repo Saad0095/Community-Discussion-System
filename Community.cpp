@@ -31,6 +31,11 @@ void Community::deletePost(int postID, int userID) {
 
 void Community::displayPosts() {
     cout << "--- " << name << " ---\n";
+        if (posts.empty())
+    {
+        cout << "No posts available.\n";
+        return;
+    }
     for (auto p : posts) {
         p->display();
         cout << "----------------\n";

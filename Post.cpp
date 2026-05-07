@@ -28,10 +28,18 @@ void Post::deleteComment(int commentID, int userID) {
 }
 
 void Post::display() {
-    cout << "Post [" << id << "] by "
-         << (author ? author->getUsername() : "Unknown") << "\n";
-    cout << "  " << text << " (Votes: " << votes << ")\n";
-    for (auto c : comments) c->display();
+    // cout << "Post [" << id << "] by "
+    //      << (author ? author->getUsername() : "Unknown") << "\n";
+    // cout << "  " << text << " (Votes: " << votes << ")\n";
+    // for (auto c : comments) c->display();
+    cout << "Post ID : " << id << endl;
+    cout << "Author  : "
+    << (author ? author->getUsername() : "Unknown")
+    << endl;
+    cout << "Content : " << text << endl;
+    cout << "Votes   : " << votes << endl;
+    for (auto c : comments)
+        c->display();
 }
 
 string Post::getText() const { return text; }
