@@ -42,8 +42,9 @@ int main() {
       cout << "9. Delete Comment\n";
       cout << "10. Upvote Post\n";
       cout << "11. Downvote Post\n";
-      cout << "12. Save & Exit\n";
-      cout << "13. Logout\n";
+      cout << "12. View My Posts\n";
+      cout << "13. Save & Exit\n";
+      cout << "14. Logout\n";
       cout << "==========================\n";
       cout << "Choice: ";
 
@@ -85,8 +86,11 @@ int main() {
           throw runtime_error("Invalid credentials!");
       }
 
-      else if (choice >= 3 && choice <= 11 && !currentUser)
-        throw runtime_error("Login first!");
+      else if ((choice == 3 || choice == 5 || choice == 7 || choice == 8 ||
+                choice == 9 || choice == 10 || choice == 11 || choice == 12 ||
+                choice == 14) &&
+               !currentUser)
+        throw runtime_error("Please login first!");
 
       else if (choice == 3) {
         string communityName;
@@ -192,10 +196,31 @@ int main() {
       }
 
       else if (choice == 12) {
+        bool found = false;
+
+        cout << "\nMy Posts:\n";
+
+        for (auto c : comms) {
+          for (auto p : c->getPosts()) {
+            if (p->getAuthor() &&
+                p->getAuthor()->getId() == currentUser->getId()) {
+              cout << "\nCommunity: " << c->getName() << endl;
+
+              p->display();
+
+              found = true;
+            }
+          }
+        }
+
+        if (!found) {
+          cout << "You have not created any posts yet.\n";
+        }
+      } else if (choice == 13) {
         saveData(sys);
         cout << "Saved!\n";
         break;
-      } else if (choice == 13) {
+      } else if (choice == 14) {
         currentUser = nullptr;
         cout << "Logged out successfully!\n";
       }
