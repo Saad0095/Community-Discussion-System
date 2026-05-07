@@ -219,7 +219,6 @@ int main() {
       } else if (choice == 13) {
         saveData(sys);
         cout << "Saved!\n";
-        break;
       } else if (choice == 14) {
         currentUser = nullptr;
         cout << "Logged out successfully!\n";
