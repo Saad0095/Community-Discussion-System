@@ -4,7 +4,6 @@
 
 using namespace std;
 
-// Constructor
 Comment::Comment(string t, int authID, string authName, int id, int v)
     : Content(id == 0 ? IDGenerator<Comment>::next() : id, v) {
     text = t;
@@ -12,14 +11,12 @@ Comment::Comment(string t, int authID, string authName, int id, int v)
     authorName = authName;
 }
 
-// Display
 void Comment::display() {
     cout << "   Comment [" << id << "] by "
          << authorName << ": " << text
          << endl;
 }
 
-// Getters
 string Comment::getText() const {
     return text;
 }
