@@ -1,5 +1,6 @@
-USERS 1
+USERS 2
 0 hassaan 12345678
+1 abdullah.bin.waqar test@local
 COMMUNITIES 3
 COMMUNITY General
 POSTS 1
@@ -28,11 +29,20 @@ UPVOTES 1
 DOWNVOTES 0
 
 COMMUNITY Second Group
-POSTS 1
+POSTS 2
 POST 2
 AUTHOR 0
 VOTES 0
 TEXT Third Post
+COMMENTS 0
+UPVOTES 0
+
+DOWNVOTES 0
+
+POST 1
+AUTHOR 1
+VOTES 0
+TEXT Abdullah's First Post: Tomorrow is our CCA/CCP evaluation
 COMMENTS 0
 UPVOTES 0
 
